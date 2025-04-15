@@ -18,7 +18,10 @@ public class ParImpar {
      */
     public static void main(String[] args) {
         
-        int val, nuPar = 0,nuImpar = 0;
+        int val, laI, 
+                nuPar = 0,nuImpar = 0,
+                indImp = 0,
+                indPar = 0;
         
         Scanner teclado = new Scanner(System.in);
         
@@ -26,28 +29,47 @@ public class ParImpar {
          val  = teclado.nextInt();
         int [] numeros = new int[val];
         
-        for(int i = 0; i < numeros.length ;i++ ){
-            System.out.println("informe o valor do arrey "+ (i+1) +" :");
-            numeros[i] = teclado.nextInt();
+        for(laI = 0; laI < numeros.length ;laI++ ){
+            System.out.println("informe o valor do arrey "+ (laI+1) +" :");
+            numeros[laI] = teclado.nextInt();
             
-            if (numeros.length % 2 == 0 ) {
+            if (numeros[laI] % 2 == 0 ) {
                 nuPar++;
             }else{
                 nuImpar++;
             }
         }
         
-        int pares [] = new int[nuPar];
-        int impares [] = new int[nuImpar];
         
-        for(int i = 0; i < pares.length; i++){
-            if(numeros[i] % 2 == 0 ){
-                System.out.println("indice "+numeros[i]+" com valor ");
+        int impares [] = new int[nuImpar];
+        int pares [] = new int[nuPar];
+        
+        
+        for(int numero : numeros){
+            if(numero % 2 == 0 ){
+                pares[indPar] = numero;
+                indPar++;
+         
+            }else {
+                impares[indImp] = numero;
+                indImp++;
+                
             }
         }
         
-
+        System.out.println("\n\npares");
+        if(nuPar != 0){
+            for(int i = 0; i < pares.length; i++){
+                System.out.println("indice " +i+" valor: "+ pares[i]);
+            }
+        }else{
+            System.out.println("não ha numeros pares");
+        }
         
+        System.out.println("\nimpares");
+        for(int i = 0; i < impares.length; i++){
+            System.out.println("indice " +i+" valor: "+ impares[i]);
+        }
         
     }
     
