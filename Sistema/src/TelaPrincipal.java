@@ -59,6 +59,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         lblEmail.setText("Email");
 
+        jtTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtTelefoneActionPerformed(evt);
+            }
+        });
+
         jtfEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfEmailActionPerformed(evt);
@@ -275,7 +281,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-        // gravar
+        // salvar
+        
         int response = JOptionPane.showConfirmDialog(null, 
                 "Desesjagravar o registro?", "Confirmação", 
                 JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
@@ -319,6 +326,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_btnLimpar2ActionPerformed
+
+    private void jtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
