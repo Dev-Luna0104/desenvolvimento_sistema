@@ -87,6 +87,11 @@ public class telaPrincipal extends javax.swing.JFrame {
         jLabel7.setText("Preço de Venda:");
 
         jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarActionPerformed(evt);
+            }
+        });
 
         jbSalvar.setText("Salvar");
         jbSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -174,8 +179,18 @@ public class telaPrincipal extends javax.swing.JFrame {
         );
 
         jbExcluir.setText("Excluir");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirActionPerformed(evt);
+            }
+        });
 
         jbNovo.setText("Novo");
+        jbNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNovoActionPerformed(evt);
+            }
+        });
 
         jbSair.setText("Sair");
         jbSair.addActionListener(new java.awt.event.ActionListener() {
@@ -240,7 +255,7 @@ public class telaPrincipal extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         if(response == JOptionPane.YES_OPTION){
         
-            DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+            DefaultTableModel modelo = (DefaultTableModel)jTable2.getModel();
             String linha[] = new String[6];
             linha[0] = jtfCod.getText();
             linha[1] = jtfProduto.getText();
@@ -268,10 +283,69 @@ public class telaPrincipal extends javax.swing.JFrame {
                 
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        if (response == JOptionPane.YES_OPTION) {
+     
+ 
+        
+       if (response == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_jbSairActionPerformed
+
+    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        //cancelar
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Deseja limpar os dados?"," Confirmação",
+                
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+            jtfCod.setText("");
+            jtfProduto.setText("");
+            jtfQuantidade.setText("");
+            jtfPrecoCo.setText("");
+            jtfPrecoVe.setText("");
+            jtfMaVenda.setText("");
+        }
+    }//GEN-LAST:event_jbCancelarActionPerformed
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        // remover selcionados
+        
+                //  excluir
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Desesjagravar excluir a linha?", "Confirmação", 
+                JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){
+            DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+            
+            if(jTable2.getSelectedRow()>= 0){
+                modelo.removeRow(jTable2.getSelectedRow());
+                jTable2.setModel(modelo);
+            }else{
+                JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+            }
+            
+            
+        }
+    }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void jbNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoActionPerformed
+        // novo
+                //cancelar
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Deseja limpar os dados?"," Confirmação",
+                
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+            jtfCod.setText("");
+            jtfProduto.setText("");
+            jtfQuantidade.setText("");
+            jtfPrecoCo.setText("");
+            jtfPrecoVe.setText("");
+            jtfMaVenda.setText("");
+        }
+    }//GEN-LAST:event_jbNovoActionPerformed
 
     /**
      * @param args the command line arguments
