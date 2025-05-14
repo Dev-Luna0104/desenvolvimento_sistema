@@ -1,3 +1,7 @@
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,7 +29,6 @@ public class Tela_Cadastro extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         bgPessoa = new javax.swing.ButtonGroup();
         bgSexo = new javax.swing.ButtonGroup();
@@ -127,10 +130,6 @@ public class Tela_Cadastro extends javax.swing.JFrame {
 
         bgPessoa.add(jrbJuridica);
         jrbJuridica.setText("Jurídica");
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bgPessoa, org.jdesktop.beansbinding.ObjectProperty.create(), jrbJuridica, org.jdesktop.beansbinding.BeanProperty.create("selected"));
-        bindingGroup.addBinding(binding);
-
         jrbJuridica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbJuridicaActionPerformed(evt);
@@ -139,9 +138,11 @@ public class Tela_Cadastro extends javax.swing.JFrame {
 
         bgPessoa.add(jrbFisica);
         jrbFisica.setText("Física");
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bgPessoa, org.jdesktop.beansbinding.ObjectProperty.create(), jrbFisica, org.jdesktop.beansbinding.BeanProperty.create("selected"));
-        bindingGroup.addBinding(binding);
+        jrbFisica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbFisicaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -200,10 +201,6 @@ public class Tela_Cadastro extends javax.swing.JFrame {
 
         bgSexo.add(jrbFeminino);
         jrbFeminino.setText("Feminino");
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bgSexo, org.jdesktop.beansbinding.ELProperty.create(""), jrbFeminino, org.jdesktop.beansbinding.BeanProperty.create("selected"));
-        bindingGroup.addBinding(binding);
-
         jrbFeminino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrbFemininoActionPerformed(evt);
@@ -212,9 +209,6 @@ public class Tela_Cadastro extends javax.swing.JFrame {
 
         bgSexo.add(jrbMasculino);
         jrbMasculino.setText("Masculina");
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bgSexo, org.jdesktop.beansbinding.ELProperty.create("${}"), jrbMasculino, org.jdesktop.beansbinding.BeanProperty.create("selected"));
-        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -260,12 +254,32 @@ public class Tela_Cadastro extends javax.swing.JFrame {
         jLabel17.setText("Estado Civil");
 
         jtbRemover.setText("Remover");
+        jtbRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtbRemoverActionPerformed(evt);
+            }
+        });
 
         jtbCancelar.setText("Cancelar");
+        jtbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtbCancelarActionPerformed(evt);
+            }
+        });
 
         jtbGravar.setText("Gravar");
+        jtbGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtbGravarActionPerformed(evt);
+            }
+        });
 
         jtbSair.setText("Sair");
+        jtbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtbSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -349,11 +363,12 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                                         .addComponent(jtbGravar))
                                     .addComponent(jtfCpf)
                                     .addComponent(jtfInscricaoEst)
-                                    .addComponent(jLabel13)
                                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jtfEstadoCivil)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel15)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel15))
                                         .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addGap(27, 27, 27))
         );
@@ -392,10 +407,11 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jcbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPBoxRadioPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -408,9 +424,9 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                             .addComponent(jtfRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel15))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,13 +466,16 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        bindingGroup.bind();
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrbJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbJuridicaActionPerformed
         // TODO add your handling code here:
+        jrbFeminino.setEnabled(false);
+        jrbMasculino.setEnabled(false);
+        jrbMasculino.disable();
+        jtfRg.disable();
+        jtfCpf.disable();
     }//GEN-LAST:event_jrbJuridicaActionPerformed
 
     private void jrbFemininoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbFemininoActionPerformed
@@ -466,6 +485,118 @@ public class Tela_Cadastro extends javax.swing.JFrame {
     private void jcbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbEstadoActionPerformed
+
+    private void jtbGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbGravarActionPerformed
+        // gravar
+        
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Desesjagravar o registro?", "Confirmação", 
+                JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){
+        
+            DefaultTableModel modelo = (DefaultTableModel)jtable.getModel();
+            String linha[] = new String[8];
+            linha[0] = jtfCodigo.getText();
+            linha[1] = jtfNome.getText();
+            linha[2] = jtfCidade.getText();
+            linha[3] = jtfCpf.getText();
+            linha[4] = jtfCnpj.getText();
+            linha[5] = jtfInscricaoEst.getText();
+            linha[6] = jcbEstado.getSelectedItem().toString();
+            linha[7] = (jrbFisica.isSelected()) ? "Física" : "Jurídica";
+
+            modelo.addRow(linha);
+        }
+        if (response == JOptionPane.YES_OPTION) {
+            jtfBairro.setText("");
+            jtfCep.setText("");
+            jtfCnpj.setText("");
+            jtfCpf.setText("");
+            jtfCidade.setText("");
+            jtfCodigo.setText("");
+            jtfComplemento.setText("");
+            jtfEstadoCivil.setText("");
+            jtfEndereco.setText("");
+            jtfInscricaoEst.setText("");
+            jtfNome.setText("");
+            jtfNumero.setText("");
+            jtfRg.setText("");
+            jtfTelefone.setText("");
+            jcbEstado.setSelectedItem("AC");
+            bgSexo.clearSelection();
+            bgPessoa.clearSelection();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jtbGravarActionPerformed
+
+    private void jtbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbSairActionPerformed
+       //sair
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Deseja sair ?"," Confirmação",
+                
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }   
+    }//GEN-LAST:event_jtbSairActionPerformed
+
+    private void jtbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbCancelarActionPerformed
+        // Limpar dados
+
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Deseja limpar os dados?"," Confirmação",
+                
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            jtfBairro.setText("");
+            jtfCep.setText("");
+            jtfCnpj.setText("");
+            jtfCpf.setText("");
+            jtfCidade.setText("");
+            jtfCodigo.setText("");
+            jtfComplemento.setText("");
+            jtfEstadoCivil.setText("");
+            jtfEndereco.setText("");
+            jtfInscricaoEst.setText("");
+            jtfNome.setText("");
+            jtfNumero.setText("");
+            jtfRg.setText("");
+            jtfTelefone.setText("");
+            jcbEstado.setSelectedItem("AC");
+            bgSexo.clearSelection();
+            bgPessoa.clearSelection();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jtbCancelarActionPerformed
+
+    private void jtbRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbRemoverActionPerformed
+        //  excluir
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Desesjagravar excluir a linha?", "Confirmação", 
+                JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){
+            DefaultTableModel modelo = (DefaultTableModel) jtable.getModel();
+            
+            if(jtable.getSelectedRow()>= 0){
+                modelo.removeRow(jtable.getSelectedRow());
+                jtable.setModel(modelo);
+            }else{
+                JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+            }
+            
+            
+        }        
+    }//GEN-LAST:event_jtbRemoverActionPerformed
+
+    private void jrbFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbFisicaActionPerformed
+        // TODO add your handling code here:
+        //fisica
+        jtfCnpj.disable();
+        jtfInscricaoEst.disable();
+                jrbFeminino.setEnabled(true);
+        jrbMasculino.setEnabled(true);
+        
+    }//GEN-LAST:event_jrbFisicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,6 +683,5 @@ public class Tela_Cadastro extends javax.swing.JFrame {
     private javax.swing.JTextField jtfNumero;
     private javax.swing.JTextField jtfRg;
     private javax.swing.JTextField jtfTelefone;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

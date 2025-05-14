@@ -154,11 +154,13 @@
                                       </Group>
                                       <Component id="jtfCpf" max="32767" attributes="0"/>
                                       <Component id="jtfInscricaoEst" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel17" max="32767" attributes="0"/>
                                       <Component id="jtfEstadoCivil" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -212,10 +214,12 @@
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jtfCidade" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jcbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfCep" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jcbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfCep" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -233,9 +237,9 @@
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -480,9 +484,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Jur&#xed;dica"/>
                   </Properties>
-                  <BindingProperties>
-                    <BindingProperty name="selected" source="bgPessoa" target="jrbJuridica" targetPath="selected" updateStrategy="0" immediately="false"/>
-                  </BindingProperties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbJuridicaActionPerformed"/>
                   </Events>
@@ -494,9 +495,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="F&#xed;sica"/>
                   </Properties>
-                  <BindingProperties>
-                    <BindingProperty name="selected" source="bgPessoa" target="jrbFisica" targetPath="selected" updateStrategy="0" immediately="false"/>
-                  </BindingProperties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbFisicaActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -609,9 +610,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Feminino"/>
                   </Properties>
-                  <BindingProperties>
-                    <BindingProperty name="selected" source="bgSexo" sourcePath="" target="jrbFeminino" targetPath="selected" updateStrategy="0" immediately="false"/>
-                  </BindingProperties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbFemininoActionPerformed"/>
                   </Events>
@@ -623,9 +621,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Masculina"/>
                   </Properties>
-                  <BindingProperties>
-                    <BindingProperty name="selected" source="bgSexo" sourcePath="${}" target="jrbMasculino" targetPath="selected" updateStrategy="0" immediately="false"/>
-                  </BindingProperties>
                 </Component>
               </SubComponents>
             </Container>
@@ -647,21 +642,33 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Remover"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtbRemoverActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jtbCancelar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtbCancelarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jtbGravar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gravar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtbGravarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jtbSair">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sair"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtbSairActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
