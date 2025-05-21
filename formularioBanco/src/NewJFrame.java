@@ -4,6 +4,7 @@ import com.mysql.jdbc.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -93,10 +94,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Codigo", "Nome", "Telefone", "E-mail"
@@ -107,12 +105,32 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel4.setText("E-mail");
 
         btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         btnGravar.setText("Gravar");
+        btnGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGravarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         btnListar.setText("Listar");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +202,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(btnExcluir)
                     .addComponent(btnSair)
                     .addComponent(btnListar))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,6 +224,78 @@ public class NewJFrame extends javax.swing.JFrame {
         
         this.lista();
     }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+//sair
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Deseja sair ?"," Confirmação",
+                
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }           
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+   // Limpar dados
+
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Deseja limpar os dados?"," Confirmação",
+                
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            edtCodigo.setText("");
+            edtNome.setText("");
+            edtTelefone.setText("");
+            edtEmail.setText("");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
+ // gravar
+        
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Desesjagravar o registro?", "Confirmação", 
+                JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){
+        
+            DefaultTableModel modelo = (DefaultTableModel)jTable1.getModel();
+            String linha[] = new String[4];
+            linha[0] = edtCodigo.getText();
+            linha[1] = edtNome.getText();
+            linha[2] = edtTelefone.getText();
+            linha[3] = edtEmail.getText();
+
+            modelo.addRow(linha);
+        }
+        if (response == JOptionPane.YES_OPTION) {
+            edtCodigo.setText("");
+            edtNome.setText("");
+            edtTelefone.setText("");
+            edtEmail.setText("");
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_btnGravarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        //  excluir
+        int response = JOptionPane.showConfirmDialog(null, 
+                "Desesjagravar excluir a linha?", "Confirmação", 
+                JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if(response == JOptionPane.YES_OPTION){
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            
+            if(jTable1.getSelectedRow()>= 0){
+                modelo.removeRow(jTable1.getSelectedRow());
+                jTable1.setModel(modelo);
+            }else{
+                JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+            }
+            
+            
+        }     
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
