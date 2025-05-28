@@ -17,15 +17,26 @@ INSERT INTO cadastro (codigo,nome,telefone,email) VALUES (3,'Carlos','(14) 3231-
 
 pasta formulario_Produto_Banco
 
-drop database if exists banco; create database banco;
-use banco;
-create table produtos (
-	numero int primary key, 
-	produto varchar(100), 
-    quantidade int not null, 
-    valUnitario int not null,
-    subTotal int
+DROP DATABASE IF EXISTS banco;
+CREATE DATABASE banco;
+USE banco;
+
+CREATE TABLE produtos (
+    numero INT not null PRIMARY KEY, 
+    produto VARCHAR(100), 
+    quantidade INT NOT NULL, 
+    valUnitario double NOT NULL,
+    subTotal INT
 );
 
-INSERT INTO produtos (numero,produto,quantidade,valUnitario,subTotal) 
-VALUES (1,'Batata','(14) 3227-1212','maria@etec.sp.gov.br'); 
+
+INSERT INTO produtos (numero, produto, quantidade, valUnitario) 
+VALUES (1, 'Batata', 50, 1.5);
+
+INSERT INTO produtos (numero, produto, quantidade, valUnitario) 
+VALUES (1, 'Batata', 50, 1.5);
+
+
+UPDATE produtos 
+SET subTotal = quantidade * valUnitario 
+WHERE numero = 1; 
