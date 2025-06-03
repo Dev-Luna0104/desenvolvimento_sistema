@@ -26,6 +26,59 @@ public class NewJFrame extends javax.swing.JFrame {
     public NewJFrame() {
         initComponents();
     }
+    
+    private void atualizarSubtotal() {
+    try {
+        int qtd = Integer.parseInt(jtfQuantidade.getText());
+        double unit = Double.parseDouble(jtfUnitario.getText());
+        jtfSubTotal.setText(String.format("%.2f", qtd * unit));
+    } catch (NumberFormatException e) {
+        jtfSubTotal.setText("0.00");
+    }
+}
+    
+    private void Alterar() {
+    int linhaSelecionada = jTable1.getSelectedRow();
+    if (linhaSelecionada == -1) {
+        JOptionPane.showMessageDialog(null, "Selecione um produto para alterar.");
+        return;
+    }
+
+    try {
+        int numero = Integer.parseInt(jtfNumero.getText());
+        String produto = jtfProduto.getText();
+        int quantidade = Integer.parseInt(jtfQuantidade.getText());
+        double unitario = Double.parseDouble(jtfUnitario.getText());
+        double subtotal = quantidade * unitario;
+
+        Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://127.0.0.1/banco", "root", "");
+
+        String sql = "UPDATE produtos SET produto = ?, quantidade = ?, unitario = ?, subtotal = ? WHERE numero = ?";
+        PreparedStatement stmt = (PreparedStatement) con.prepareStatement(sql);
+        stmt.setString(1, produto);
+        stmt.setInt(2, quantidade);
+        stmt.setDouble(3, unitario);
+        stmt.setDouble(4, subtotal);
+        stmt.setInt(5, numero);
+
+        int linhasAfetadas = stmt.executeUpdate();
+
+        if (linhasAfetadas > 0) {
+            JOptionPane.showMessageDialog(null, "Produto alterado com sucesso.");
+            this.Lista();// Atualiza a JTable com os dados atualizados
+            jtfSubTotal.setText(String.format("%.2f", subtotal)); // Atualiza subtotal
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhum produto foi alterado. Verifique o número.");
+        }
+
+        stmt.close();
+        con.close();
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Erro ao alterar produto: " + e.getMessage());
+    }
+}
+
+    
  private void Limpa() {
                 
             jtfNumero.setText("");
@@ -51,7 +104,7 @@ public class NewJFrame extends javax.swing.JFrame {
       
             banco.execute(); // cria o vetor
       
-            ResultSet resultado = banco.executeQuery(sql);
+            ResultSet resultado = banco.executeQuery();
  
             DefaultTableModel model =(DefaultTableModel) jTable1.getModel();
         
@@ -114,8 +167,19 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel2.setText("Produto");
 
         jtfSubTotal.setEditable(false);
+        jtfSubTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfSubTotalActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Sub Total");
+
+        jtfUnitario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfUnitarioActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Vl. Unitário");
 
@@ -138,6 +202,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jtfTGeral.setEditable(false);
+        jtfTGeral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfTGeralActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Total Geral");
 
@@ -149,6 +218,11 @@ public class NewJFrame extends javax.swing.JFrame {
         });
 
         jbAlterar.setText("Alterar");
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
 
         jbExcluir.setText("Excluir");
         jbExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +352,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfQuantidadeActionPerformed
-        // TODO add your handling code here:
+this.atualizarSubtotal();        // TODO add your handling code here:
     }//GEN-LAST:event_jtfQuantidadeActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
@@ -304,13 +378,19 @@ public class NewJFrame extends javax.swing.JFrame {
    try
      {
         Connection con=(Connection)DriverManager.getConnection("jdbc:mysql://127.0.0.1/banco","root",""); 
-        Statement stmt=(Statement)con.createStatement();
 
-       String insert="INSERT INTO produtos VALUES('"+jtfNumero.getText()+"','"+jtfProduto.getText()+"','"+jtfQuantidade.getText()+"','"+jtfUnitario.getText()+"');";
-       stmt.executeUpdate(insert);
+String insert = "INSERT INTO produtos (numero, Produto, quantidade, valUnitario, subTotal) VALUES (?, ?, ?, ?, ?)";
+PreparedStatement stmt2 = (PreparedStatement) con.prepareStatement(insert);
+stmt2.setString(1, jtfNumero.getText());
+stmt2.setString(2, jtfProduto.getText());
+stmt2.setInt(3, Integer.parseInt(jtfQuantidade.getText()));
+stmt2.setDouble(4, Double.parseDouble(jtfUnitario.getText()));
+stmt2.setDouble(5, Integer.parseInt(jtfQuantidade.getText()) * Double.parseDouble(jtfUnitario.getText()));
+stmt2.executeUpdate();
 
 
        this.Limpa();
+       
      }
      catch(Exception e)
      {
@@ -361,6 +441,27 @@ System.exit(0);
             JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
         }
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void jtfSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfSubTotalActionPerformed
+ // TODO add your handling code here:
+    }//GEN-LAST:event_jtfSubTotalActionPerformed
+
+    private void jtfTGeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTGeralActionPerformed
+       //geral
+        double totalGeral = 0;
+for (int i = 0; i < jTable1.getRowCount(); i++) {
+    totalGeral += Double.parseDouble(jTable1.getValueAt(i, 4).toString());
+}
+jtfTGeral.setText(String.valueOf(totalGeral));
+    }//GEN-LAST:event_jtfTGeralActionPerformed
+
+    private void jtfUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfUnitarioActionPerformed
+this.atualizarSubtotal();
+    }//GEN-LAST:event_jtfUnitarioActionPerformed
+
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+this.Alterar();       // TODO add your handling code here:
+    }//GEN-LAST:event_jbAlterarActionPerformed
 
     /**
      * @param args the command line arguments
