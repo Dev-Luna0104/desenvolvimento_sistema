@@ -34,9 +34,40 @@ INSERT INTO produtos (numero, produto, quantidade, valUnitario)
 VALUES (1, 'Batata', 50, 1.5);
 
 INSERT INTO produtos (numero, produto, quantidade, valUnitario) 
+
+
 VALUES (1, 'Batata', 50, 1.5);
 
-
 UPDATE produtos 
+
+
+//----------------------------------------------------------------------------------//
+DS
+pasta:  projetoSistemaAcademico_18_06
+
+
+drop database if exists sistemaAcademico;
+create database sistemaAcademico;
+use sistemaAcademico;
+
+create table cadastro(
+	ra int not null primary key,
+    aluno varchar(100),
+    curso varchar(60),
+    modulo int
+);
+
+create table notas(
+	ra int not null,
+    material varchar(80) not null ,
+    b1 float,
+    b2 float,
+    b3 float,
+    b4 float,
+    foreign key (ra) references cadastro(ra),
+    primary key(ra,material)
+);
+
+
 SET subTotal = quantidade * valUnitario 
 WHERE numero = 1; 
