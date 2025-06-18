@@ -48,6 +48,11 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         jbLister.setText("Listar");
 
         jbSair.setText("Sair");
+        jbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSairActionPerformed(evt);
+            }
+        });
 
         jbExcluir.setText("Excluir");
 
@@ -87,6 +92,10 @@ public class ConsultaUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSairActionPerformed
 
     /**
      * @param args the command line arguments
